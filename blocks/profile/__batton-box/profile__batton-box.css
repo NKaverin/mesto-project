@@ -1,0 +1,29 @@
+.profile__batton-box {
+    width: 100%;
+    border: 2px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 2px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 34px;
+}
+
+@media screen and (min-width: 768px)  {
+    .profile__batton-box {
+        width: 584px;
+    }    
+}
+
+@media screen and (min-width: 1024px)  {
+    .profile__batton-box {
+        width: 150px;
+        margin-top: 0;
+        margin-right: 0;
+    }    
+}
+
+.profile__batton-box:hover {
+    opacity: 0.6;
+}

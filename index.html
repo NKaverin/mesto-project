@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Mesto</title>
+</head>
+<body class="page">
+    <header class="header">
+        <img class="header__logo" src="/vendor/images/logo.svg" alt="логотип, слово место в степени russia">
+    </header>
+    <main>
+        <section class="popup"> 
+            <div class="popup__container">
+                <a href="#" class="popup__icon-container">
+                    <img class="popup__close-icon" src="/vendor/images/CloseIcon.svg" alt="крестик для закрытия формы">
+                </a>
+                <form class="popup__form">
+                    <h2 class="popup__header">Редактировать профиль</h2>
+                    <fieldset class="popup__fieldbox">
+                        <input type="text" class="popup__field" placeholder="Жак-Ив Кусто">
+                        <input type="text" class="popup__field" placeholder="Исследователь океана">
+                    </fieldset>
+                    <a href="#" class="popup__submit-button">Сохранить</a>
+                </form>
+            </div>
+        </section>
+        <section class="profile">
+            <img class="profile__avatar" src="/vendor/images/avatar.jpg" alt="аватар профиля">
+            <div class="profile__info">
+                <div class="profile__heading">
+                    <p class="profile__name"> Жак-Ив Кусто</p>
+                    <a class="profile__edit-button" href="#">
+                        <img src="/vendor/images/EditButton.svg" alt="кнопка редактировать в виде флага">
+                    </a>
+                </div>
+                <p class="profile__caption"> Исследователь океана </p>              
+            </div>   
+            <a class="profile__batton-box" href="#">
+                <img class="profile__add-batton" src="/vendor/images/AddButton.svg" alt="кнопка добавить в виде плюса">
+            </a>
+        </section>
+        <section>
+            <ul class="elements">
+                <li class="elements__element">
+                    <img src="/vendor/images/melburn.jpg" alt="" class="elements__image">
+                    <div class="elements__caption-box">
+                        <p class="elements__caption"> Мельбурн </p>
+                        <a href="#" class="elements__heart">
+                            <img src="/vendor/images/heart.svg" alt="картинка сердца">
+                        </a>
+                    </div>
+                </li>
+                <li class="elements__element">
+                    <img src="/vendor/images/vellington.jpg" alt="" class="elements__image">
+                    <div class="elements__caption-box">
+                        <p class="elements__caption"> Веллингтон </p>
+                        <a href="#" class="elements__heart">
+                            <img src="/vendor/images/heart.svg" alt="картинка сердца">
+                        </a>
+                    </div>
+                </li>
+                <li class="elements__element">
+                    <img src="/vendor/images/kiev.jpg" alt="" class="elements__image">
+                    <div class="elements__caption-box">
+                        <p class="elements__caption"> Киев </p>
+                        <a href="#" class="elements__heart">
+                            <img src="/vendor/images/heart.svg" alt="картинка сердца">
+                        </a>
+                    </div>
+                </li>
+                <li class="elements__element">
+                    <img src="/vendor/images/oslo.jpg" alt="" class="elements__image">
+                    <div class="elements__caption-box">
+                        <p class="elements__caption"> Осло </p>
+                        <a href="#" class="elements__heart">
+                            <img src="/vendor/images/heart.svg" alt="картинка сердца">
+                        </a>
+                    </div>
+                </li>
+                <li class="elements__element">
+                    <img src="/vendor/images/london.jpg" alt="" class="elements__image">
+                    <div class="elements__caption-box">
+                        <p class="elements__caption"> Лондон </p>
+                        <a href="#" class="elements__heart">
+                            <img src="/vendor/images/heart.svg" alt="картинка сердца">
+                        </a>
+                    </div>
+                </li>
+                <li class="elements__element">
+                    <img src="/vendor/images/amsterdam.jpg" alt="" class="elements__image">
+                    <div class="elements__caption-box">
+                        <p class="elements__caption"> Амстердам </p>
+                        <a href="#" class="elements__heart">
+                            <img src="/vendor/images/heart.svg" alt="картинка сердца">
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__copyright">&copy; 2020 Mesto Russia </p>
+    </footer>
+</body>
+</html>
