@@ -1,0 +1,19 @@
+.popup__icon-container {
+    width: 22px;
+    height: 22px;
+    background: rgba(0, 0, 0, 0);
+    padding: 0;
+    border: 0;
+    position: absolute;
+    top: -38px;
+    right: 0px;
+}
+
+@media screen and (min-width: 1024px)  {
+    .popup__icon-container {
+        width: 32px;
+        height: 32px;
+        top: -40px;
+        right: -40px;
+    }    
+}

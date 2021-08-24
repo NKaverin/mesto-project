@@ -27,64 +27,24 @@
         </section>
         <section>
             <ul class="elements">
-                <li class="elements__element">
-                    <img src="./vendor/images/melburn.jpg" alt="Мельбурн" class="elements__image">
-                    <div class="elements__caption-box">
-                        <p class="elements__caption"> Мельбурн </p>
-                        <button class="elements__heart" type="button">
-                            <img src="./vendor/images/heart.svg" alt="картинка сердца">
+                <template id="element-of-elements">
+                    <li class="elements__element">
+                        <img class="elements__image">
+                        <div class="elements__caption-box">
+                            <p class="elements__caption">  </p>
+                            <button class="elements__heart" type="button">
+                                <img src="./vendor/images/heart.svg" alt="картинка сердца" class="elements__heart-image">
+                            </button>
+                        </div>
+                        <button class="elements__delete-button" type="button">
+                            <img src="./vendor/images/RecycleBin.svg" alt="Корзина для удаления">
                         </button>
-                    </div>
-                </li>
-                <li class="elements__element">
-                    <img src="./vendor/images/vellington.jpg" alt="Веллингтон" class="elements__image">
-                    <div class="elements__caption-box">
-                        <p class="elements__caption"> Веллингтон </p>
-                        <button class="elements__heart" type="button">
-                            <img src="./vendor/images/heart.svg" alt="картинка сердца">
-                        </button>
-                    </div>
-                </li>
-                <li class="elements__element">
-                    <img src="./vendor/images/kiev.jpg" alt="Киев" class="elements__image">
-                    <div class="elements__caption-box">
-                        <p class="elements__caption"> Киев </p>
-                        <button class="elements__heart" type="button">
-                            <img src="./vendor/images/heart.svg" alt="картинка сердца">
-                        </button>
-                    </div>
-                </li>
-                <li class="elements__element">
-                    <img src="./vendor/images/oslo.jpg" alt="Осло" class="elements__image">
-                    <div class="elements__caption-box">
-                        <p class="elements__caption"> Осло </p>
-                        <button class="elements__heart" type="button">
-                            <img src="./vendor/images/heart.svg" alt="картинка сердца">
-                        </button>
-                    </div>
-                </li>
-                <li class="elements__element">
-                    <img src="./vendor/images/london.jpg" alt="Лондон" class="elements__image">
-                    <div class="elements__caption-box">
-                        <p class="elements__caption"> Лондон </p>
-                        <button class="elements__heart" type="button">
-                            <img src="./vendor/images/heart.svg" alt="картинка сердца">
-                        </button>
-                    </div>
-                </li>
-                <li class="elements__element">
-                    <img src="./vendor/images/amsterdam.jpg" alt="Амстердам" class="elements__image">
-                    <div class="elements__caption-box">
-                        <p class="elements__caption"> Амстердам </p>
-                        <button class="elements__heart" type="button">
-                            <img src="./vendor/images/heart.svg" alt="картинка сердца">
-                        </button>
-                    </div>
-                </li>
+                    </li>
+                </template> 
             </ul>
         </section>
-        <section class="popup"> 
-            <div class="popup__container">    
+        <section class="popup" id="popupEditProfile"> 
+            <div class="popup__container popup_decor_white">    
                 <button class="popup__icon-container" type="button">
                     <img class="popup__close-icon" src="./vendor/images/CloseIcon.svg" alt="крестик для закрытия формы">
                 </button>          
@@ -100,6 +60,33 @@
                 </form>               
             </div>
         </section>
+        <section class="popup" id="popupNewPlace"> 
+            <div class="popup__container popup_decor_white">    
+                <button class="popup__icon-container" type="button">
+                    <img class="popup__close-icon" src="./vendor/images/CloseIcon.svg" alt="крестик для закрытия формы">
+                </button>          
+                <h2 class="popup__header">Новое место</h2>
+                <form name="new-place">
+                    <fieldset class="popup__fieldbox">
+                        <input type="text" class="popup__field" placeholder="Название"  name="image-name">
+                        <input type="text" class="popup__field" placeholder="Ссылка на картинку"  name="image-link">
+                    </fieldset>
+                    <button class="popup__submit-button" type="submit">
+                        Создать
+                    </button>
+                </form>               
+            </div>
+        </section>
+        <section class="popup" id="popupImage"> 
+            <div class="popup__container">    
+                <button class="popup__icon-container" type="button">
+                    <img class="popup__close-icon" src="./vendor/images/CloseIcon.svg" alt="крестик для закрытия формы">
+                </button>    
+                <img class="popup__image" src="https://images.unsplash.com/photo-1581285217236-a2355291f9c9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=658&q=80" alt="Картинка">
+                <p class="popup__caption"> Подпись к картинке </p>
+            </div>
+        </section>
+        <script src="/script.js"> </script>
     </main>
     <footer class="footer">
         <p class="footer__copyright">&copy; 2020 Mesto Russia </p>

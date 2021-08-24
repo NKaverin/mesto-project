@@ -1,0 +1,7 @@
+.popup_condition_opened {
+    display: flex;
+
+    height: 100%;
+    opacity: 1;
+
+}
