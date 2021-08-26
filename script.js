@@ -1,8 +1,8 @@
 // добавляет картинке сердца смену картинки по клику 
-function addEventClickOnHeart(element) {
+function addHandlerClickOnHeart(element) {
     element.addEventListener('click', function () {
         if (element.src.includes('/vendor/images/heart.svg')) {
-            element.src = './vendor/images/Fullheart.svg';
+            element.src = './vendor/images/FullHeart.svg';
         }
         else {
             element.src = './vendor/images/heart.svg';
@@ -10,41 +10,27 @@ function addEventClickOnHeart(element) {
     }); 
 }
 
-// добавляет ивент открытия поп-апа
-function addEventOpenPopup(popupId, popupClassButtonName, clearValues = false, elemtitle = '', elemSrc = '') {
-    let elementForPopup;
-    if (typeof(popupClassButtonName) === 'string') {
-        elementForPopup = document.querySelector('.' + popupClassButtonName)  
-    } else {
-        elementForPopup = popupClassButtonName;
-    }
-    elementForPopup.addEventListener('click', function () {
-        popupElement = document.querySelector('#' + popupId);
-        popupElement.classList.add('popup_condition_opened');
-        // для крестика тоже нужно добавить событие
-        popupElement.querySelector('.popup__icon-container').addEventListener('click', function () {
-            popupElement.classList.remove('popup_condition_opened')
-        })
-        // очистим поля если надо
-        if (clearValues === true) {
-            popupElement.querySelectorAll('.popup__field').forEach(element => element.value = '');    
-        }
-        // меняем картинку и текст на поп-апе 
-        console.log(elemSrc !== '');
-        if (elemSrc !== '') {
-            popupElement.querySelector('.popup__image').src = elemSrc;    
-        }
-        if (elemSrc !== '') {
-            popupElement.querySelector('.popup__caption').textContent = elemtitle;    
-        }
-    })
+// закрытие поп-апа
+function closePopup(popup) {
+    popup.classList.remove('popup_condition_opened');
+    console.log
 }
 
-// добавляет элемент в Elements
-function addElementToElements(elemTitle='', elemSrc=''){
+// открытие поп-апа
+function openPopup(popup) {
+    popup.classList.add('popup_condition_opened');
+}
+
+// найдем элементы поп-апа с открытой карточкой
+const popupElement = document.querySelector('#popupImage');
+const popupImage = popupElement.querySelector('.popup__image');
+const popupCaption = popupElement.querySelector('.popup__caption');
+const elementsOnline = document.querySelector('.elements');
+
+// функция создает карточку в elements
+function createElementToElements(elemTitle='', elemSrc=''){
     // копируем шаблон
     const elementsTemplate = document.querySelector('#element-of-elements').content;
-    const elementsOnline = document.querySelector('.elements');
     const elementsElement = elementsTemplate.querySelector('.elements__element').cloneNode(true);
     // наполняем содержимым
     const elementsImage = elementsElement.querySelector('.elements__image'); 
@@ -52,15 +38,18 @@ function addElementToElements(elemTitle='', elemSrc=''){
     elementsImage.alt = elemTitle;
     elementsElement.querySelector('.elements__caption').textContent = elemTitle;
     //добавим попап-эвент
-    addEventOpenPopup('popupImage', elementsImage, false, elemTitle, elemSrc);
+    elementsImage.addEventListener('click', function () {
+        popupImage.src = elemSrc;    
+        popupCaption.textContent = elemTitle;    
+        openPopup(popupElement);
+    })
     // добавляем клик на сердце
-    addEventClickOnHeart(elementsElement.querySelector('.elements__heart-image'));
+    addHandlerClickOnHeart(elementsElement.querySelector('.elements__heart-image'));
     // добавляем удаление при нажатии на кнопку удаления
     elementsElement.querySelector('.elements__delete-button').addEventListener('click', function () {
         elementsElement.remove();
     }); 
-    // отображаем на странице
-    elementsOnline.prepend(elementsElement); 
+    return elementsElement; 
 }
 
 // добавляем событие на изменение профиля
@@ -68,34 +57,56 @@ const popupEditProfile = document.querySelector('#popupEditProfile');
 const nameInput = popupEditProfile.querySelector('[name="profile-name"]');
 const captionInput = popupEditProfile.querySelector('[name="profile-caption"]');
 
-function formSubmitHandler (evt) {
+const profileName = document.querySelector('.profile__name');
+const profileCaption = document.querySelector('.profile__caption');
+
+function handleEditProfileForm (evt) {
     evt.preventDefault(); 
-    document.querySelector('.profile__name').textContent = nameInput.value;
-    document.querySelector('.profile__caption').textContent = captionInput.value;
+    profileName.textContent = nameInput.value;
+    profileCaption.textContent = captionInput.value;
     // нужно закрыть форму
-    popupEditProfile.classList.remove('popup_condition_opened');
+    closePopup(popupEditProfile);
 }
 
-popupEditProfile.addEventListener('submit', formSubmitHandler); 
+popupEditProfile.addEventListener('submit', handleEditProfileForm); 
+
+// добавляем открытие этого поп-апа
+document.querySelector('.profile__edit-button').addEventListener('click', function () {  
+    openPopup(popupEditProfile);
+})
 
 // добавляем событие на добавление карточки
 const popupPlace = document.querySelector('#popupNewPlace');
 const namePlaceInput = popupPlace.querySelector('[name="image-name"]');
 const linkPlaceInput = popupPlace.querySelector('[name="image-link"]');
 
-function formSubmitHandler (evt) {
+function handleAddElement (evt) {
     evt.preventDefault(); 
     if (namePlaceInput.value === '' || linkPlaceInput.value === '' ) {
         alert('Вы не заполнили данные для добавления карточки');
     } else {
-        addElementToElements(namePlaceInput.value, linkPlaceInput.value);
+        elementsOnline.prepend(createElementToElements(namePlaceInput.value, linkPlaceInput.value));
         // нужно закрыть форму
-        popupPlace.classList.remove('popup_condition_opened');
+        closePopup(popupPlace);
     }
 }
 
-popupPlace.addEventListener('submit', formSubmitHandler); 
+// добавляем открытие этого поп-апа
+document.querySelector('.profile__batton-box').addEventListener('click', function () { 
+    // очистим поля
+    popupPlace.querySelectorAll('.popup__field').forEach(element => element.value = '');  
+    // откроем поп-ап
+    openPopup(popupPlace);
+})
 
+popupPlace.addEventListener('submit', handleAddElement); 
+
+ // для крестиков нужно добавить событие
+document.querySelectorAll('.popup').forEach(popupElement =>
+    popupElement.querySelector('.popup__icon-container').addEventListener('click', function () {
+        closePopup(popupElement);
+    })
+)
 // добавляем предопределенные карточки
 const initialCards = [
     {
@@ -124,8 +135,5 @@ const initialCards = [
     }
 ]; 
 
-initialCards.forEach(element => addElementToElements(element.name,element.link));
-
-// добавляем эвенты на поп-апы
-addEventOpenPopup('popupEditProfile','profile__edit-button');
-addEventOpenPopup('popupNewPlace','profile__batton-box', true);
+// создаем карточки отображаем на странице
+initialCards.forEach(element => elementsOnline.prepend(createElementToElements(element.name,element.link)));
