@@ -21,3 +21,7 @@
 .popup__field:nth-child(n+2) {
     margin-top: 30px;
 }
+
+.popup__field:invalid {
+    border-bottom: 1px solid red;
+}
