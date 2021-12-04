@@ -1,9 +1,9 @@
-import '../styles/index.css';
+import './index.css';
 
 import {closePopup, openPopup} from './utils.js';
 import {handleAddElement, handleEditProfileForm} from './modal.js';
 import {createElementToElements} from './card.js';
-import {enableValidation} from './validate.js';
+import {enableValidation, handleSubmitButton} from './validate.js';
 
 // закрытие поп-апа по клику
 document.addEventListener('click', function (evt) {
@@ -30,7 +30,6 @@ const captionInput = popupEditProfile.querySelector('[name="profile-caption"]');
 const profileName = document.querySelector('.profile__name');
 const profileCaption = document.querySelector('.profile__caption');
 
-
 popupEditProfile.addEventListener('submit', handleEditProfileForm); 
 
 // добавляем открытие поп-апа редактирования
@@ -45,10 +44,11 @@ const popupPlace = document.querySelector('#popupNewPlace');
 
 // добавляем открытие этого поп-апа
 document.querySelector('.profile__batton-box').addEventListener('click', function () { 
-    // очистим поля
-    popupPlace.querySelectorAll('.popup__field').forEach(element => element.value = '');  
-    // откроем поп-ап
     openPopup(popupPlace);
+    // по умолчанию выключаем кнопку
+    let submitButton = popupPlace.querySelector('.popup__submit-button');
+    submitButton.Disabled = true;
+    submitButton.classList.add('popup__submit-button_inactive');
 })
 
 popupPlace.addEventListener('submit', handleAddElement); 
@@ -59,7 +59,6 @@ document.querySelectorAll('.popup').forEach(popupElement =>
         closePopup(popupElement);
     })
 )
-
 
 // настройки для валидации
 let settings = {
@@ -72,7 +71,6 @@ let settings = {
 }
 //подключаем валидацию
 enableValidation(settings);
-
 
 // добавляем предопределенные карточки
 const initialCards = [

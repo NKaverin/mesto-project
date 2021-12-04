@@ -9,8 +9,6 @@ const captionInput = popupEditProfile.querySelector('[name="profile-caption"]');
 const elementsOnline = document.querySelector('.elements');
 
 export function handleEditProfileForm (evt) {
-
-    evt.preventDefault(); 
     profileName.textContent = nameInput.value;
     profileCaption.textContent = captionInput.value;
     // нужно закрыть форму
@@ -22,12 +20,10 @@ const namePlaceInput = popupPlace.querySelector('[name="image-name"]');
 const linkPlaceInput = popupPlace.querySelector('[name="image-link"]');
 
 export function handleAddElement (evt) {
-    evt.preventDefault(); 
-    if (namePlaceInput.value === '' || linkPlaceInput.value === '' ) {
-        alert('Вы не заполнили данные для добавления карточки');
-    } else {
-        elementsOnline.prepend(createElementToElements(namePlaceInput.value, linkPlaceInput.value));
-        // нужно закрыть форму
-        closePopup(popupPlace);
-    }
+    elementsOnline.prepend(createElementToElements(namePlaceInput.value, linkPlaceInput.value));
+    // нужно закрыть форму
+    closePopup(popupPlace);
+    // очистим поля
+    namePlaceInput.value = '';
+    linkPlaceInput.value = '';
 }
