@@ -1,24 +1,9 @@
-import '../styles/index.css';
+import './index.css';
 
 import {closePopup, openPopup} from './utils.js';
 import {handleAddElement, handleEditProfileForm} from './modal.js';
 import {createElementToElements} from './card.js';
-import {enableValidation} from './validate.js';
-
-// закрытие поп-апа по клику
-document.addEventListener('click', function (evt) {
-    if (evt.target.classList.contains('popup') == true) {
-        closePopup(document.querySelector('.popup_condition_opened'));
-    }
-})
-
-// закрытие поп-апа по кнопке esc
-document.addEventListener('keydown', function (evt) {
-    let popup = document.querySelector('.popup_condition_opened');
-    if (evt.key == 'Escape' && popup) {
-        closePopup(popup);
-    }
-})
+import {enableValidation, handleSubmitButton} from './validate.js';
 
 const elementsOnline = document.querySelector('.elements');
 
@@ -29,7 +14,6 @@ const captionInput = popupEditProfile.querySelector('[name="profile-caption"]');
 
 const profileName = document.querySelector('.profile__name');
 const profileCaption = document.querySelector('.profile__caption');
-
 
 popupEditProfile.addEventListener('submit', handleEditProfileForm); 
 
@@ -45,10 +29,11 @@ const popupPlace = document.querySelector('#popupNewPlace');
 
 // добавляем открытие этого поп-апа
 document.querySelector('.profile__batton-box').addEventListener('click', function () { 
-    // очистим поля
-    popupPlace.querySelectorAll('.popup__field').forEach(element => element.value = '');  
-    // откроем поп-ап
     openPopup(popupPlace);
+    // по умолчанию выключаем кнопку
+    const submitButton = popupPlace.querySelector('.popup__submit-button');
+    submitButton.Disabled = true;
+    submitButton.classList.add('popup__submit-button_inactive');
 })
 
 popupPlace.addEventListener('submit', handleAddElement); 
@@ -60,9 +45,8 @@ document.querySelectorAll('.popup').forEach(popupElement =>
     })
 )
 
-
 // настройки для валидации
-let settings = {
+const settings = {
     formSelector: '.popup__form',
     inputSelector: '.popup__field',
     submitButtonSelector: '.popup__submit-button',
@@ -72,7 +56,6 @@ let settings = {
 }
 //подключаем валидацию
 enableValidation(settings);
-
 
 // добавляем предопределенные карточки
 const initialCards = [

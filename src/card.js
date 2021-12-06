@@ -1,13 +1,15 @@
 import {openPopup} from './utils.js';
+const fullHeartImage = new URL('../vendor/images/FullHeart.svg', import.meta.url);
+const emptyHearttImage = new URL('../vendor/images/heart.svg', import.meta.url)
 
 // добавляет картинке сердца смену картинки по клику 
 function addHandlerClickOnHeart(element) {
     element.addEventListener('click', function () {
-        if (element.src.includes('images/heart.svg')) {
-            element.src = '../vendor/images/FullHeart.svg';
+        if (element.src.includes(emptyHearttImage)) {
+            element.src = fullHeartImage;
         }
         else {
-            element.src = '../vendor/images/heart.svg';
+            element.src = emptyHearttImage;
         }
     }); 
 }
