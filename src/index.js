@@ -5,21 +5,6 @@ import {handleAddElement, handleEditProfileForm} from './modal.js';
 import {createElementToElements} from './card.js';
 import {enableValidation, handleSubmitButton} from './validate.js';
 
-// закрытие поп-апа по клику
-document.addEventListener('click', function (evt) {
-    if (evt.target.classList.contains('popup') == true) {
-        closePopup(document.querySelector('.popup_condition_opened'));
-    }
-})
-
-// закрытие поп-апа по кнопке esc
-document.addEventListener('keydown', function (evt) {
-    let popup = document.querySelector('.popup_condition_opened');
-    if (evt.key == 'Escape' && popup) {
-        closePopup(popup);
-    }
-})
-
 const elementsOnline = document.querySelector('.elements');
 
 // добавляем событие на изменение профиля
@@ -46,7 +31,7 @@ const popupPlace = document.querySelector('#popupNewPlace');
 document.querySelector('.profile__batton-box').addEventListener('click', function () { 
     openPopup(popupPlace);
     // по умолчанию выключаем кнопку
-    let submitButton = popupPlace.querySelector('.popup__submit-button');
+    const submitButton = popupPlace.querySelector('.popup__submit-button');
     submitButton.Disabled = true;
     submitButton.classList.add('popup__submit-button_inactive');
 })
@@ -61,7 +46,7 @@ document.querySelectorAll('.popup').forEach(popupElement =>
 )
 
 // настройки для валидации
-let settings = {
+const settings = {
     formSelector: '.popup__form',
     inputSelector: '.popup__field',
     submitButtonSelector: '.popup__submit-button',
