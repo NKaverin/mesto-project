@@ -1,6 +1,9 @@
 import {openPopup} from './utils.js';
 const fullHeartImage = new URL('../vendor/images/FullHeart.svg', import.meta.url);
-const emptyHearttImage = new URL('../vendor/images/heart.svg', import.meta.url)
+const emptyHearttImage = new URL('../vendor/images/heart.svg', import.meta.url);
+const popupElement = document.querySelector('#popupImage');
+const popupImage = popupElement.querySelector('.popup__image');
+const popupCaption = popupElement.querySelector('.popup__caption');
 
 // добавляет картинке сердца смену картинки по клику 
 function addHandlerClickOnHeart(element) {
@@ -13,10 +16,6 @@ function addHandlerClickOnHeart(element) {
         }
     }); 
 }
-
-const popupElement = document.querySelector('#popupImage');
-const popupImage = popupElement.querySelector('.popup__image');
-const popupCaption = popupElement.querySelector('.popup__caption');
 
 // функция создает карточку в elements
 export function createElementToElements(elemTitle='', elemSrc=''){

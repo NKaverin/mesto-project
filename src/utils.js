@@ -2,8 +2,9 @@
 export function closePopup(popup) {
     if (popup) {
         popup.classList.remove('popup_condition_opened');
+        //на документ, потому что фокус может не перейти на поп-ап
         document.removeEventListener('keydown', closePopupOnEsc);
-        document.removeEventListener('click', closePopupOnClick);
+        popup.removeEventListener('click', closePopupOnClick);
     }
 }
 
@@ -12,7 +13,7 @@ export function openPopup(popup) {
     if (popup) {
         popup.classList.add('popup_condition_opened');
         document.addEventListener('keydown', closePopupOnEsc);
-        document.addEventListener('click', closePopupOnClick);
+        popup.addEventListener('click', closePopupOnClick);
     }
 }
 
@@ -25,8 +26,10 @@ function closePopupOnClick(evt) {
 
 // закрытие поп-апа по кнопке esc
 function closePopupOnEsc(evt) {
-    const popup = document.querySelector('.popup_condition_opened');
-    if (evt.key == 'Escape' && popup) {
-        closePopup(popup);
+    if (evt.key == 'Escape') {
+        const popup = document.querySelector('.popup_condition_opened');
+        if (popup) {
+            closePopup(popup);
+        }
     }
 }

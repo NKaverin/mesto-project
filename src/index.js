@@ -6,45 +6,12 @@ import {createElementToElements} from './card.js';
 import {enableValidation, handleSubmitButton} from './validate.js';
 
 const elementsOnline = document.querySelector('.elements');
-
-// добавляем событие на изменение профиля
 const popupEditProfile = document.querySelector('#popupEditProfile');
 const nameInput = popupEditProfile.querySelector('[name="profile-name"]');
 const captionInput = popupEditProfile.querySelector('[name="profile-caption"]');
-
 const profileName = document.querySelector('.profile__name');
 const profileCaption = document.querySelector('.profile__caption');
-
-popupEditProfile.addEventListener('submit', handleEditProfileForm); 
-
-// добавляем открытие поп-апа редактирования
-document.querySelector('.profile__edit-button').addEventListener('click', function () {
-    nameInput.value = profileName.textContent;
-    captionInput.value = profileCaption.textContent;  
-    openPopup(popupEditProfile);
-})
-
-// добавляем событие на добавление карточки
 const popupPlace = document.querySelector('#popupNewPlace');
-
-// добавляем открытие этого поп-апа
-document.querySelector('.profile__batton-box').addEventListener('click', function () { 
-    openPopup(popupPlace);
-    // по умолчанию выключаем кнопку
-    const submitButton = popupPlace.querySelector('.popup__submit-button');
-    submitButton.Disabled = true;
-    submitButton.classList.add('popup__submit-button_inactive');
-})
-
-popupPlace.addEventListener('submit', handleAddElement); 
-
- // для крестиков нужно добавить событие
-document.querySelectorAll('.popup').forEach(popupElement =>
-    popupElement.querySelector('.popup__icon-container').addEventListener('click', function () {
-        closePopup(popupElement);
-    })
-)
-
 // настройки для валидации
 const settings = {
     formSelector: '.popup__form',
@@ -53,10 +20,7 @@ const settings = {
     inactiveButtonClass: 'popup__submit-button_inactive',
     inputErrorClass: 'popup__field_type_error',
     errorClass: 'popup__field-error_active'
-}
-//подключаем валидацию
-enableValidation(settings);
-
+};
 // добавляем предопределенные карточки
 const initialCards = [
     {
@@ -84,6 +48,36 @@ const initialCards = [
         link: 'https://images.unsplash.com/photo-1561542320-9a18cd340469?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
     }
 ]; 
+
+popupEditProfile.addEventListener('submit', handleEditProfileForm); 
+
+// добавляем открытие поп-апа редактирования
+document.querySelector('.profile__edit-button').addEventListener('click', function () {
+    nameInput.value = profileName.textContent;
+    captionInput.value = profileCaption.textContent;  
+    openPopup(popupEditProfile);
+})
+
+// добавляем событие на добавление карточки
+document.querySelector('.profile__batton-box').addEventListener('click', function () { 
+    openPopup(popupPlace);
+    // по умолчанию выключаем кнопку
+    const submitButton = popupPlace.querySelector('.popup__submit-button');
+    submitButton.disabled = true;
+    submitButton.classList.add('popup__submit-button_inactive');
+})
+
+popupPlace.addEventListener('submit', handleAddElement); 
+
+ // для крестиков нужно добавить событие
+document.querySelectorAll('.popup').forEach(popupElement =>
+    popupElement.querySelector('.popup__icon-container').addEventListener('click', function () {
+        closePopup(popupElement);
+    })
+)
+
+//подключаем валидацию
+enableValidation(settings);
 
 // создаем карточки отображаем на странице
 initialCards.forEach(element => elementsOnline.prepend(createElementToElements(element.name,element.link)));
