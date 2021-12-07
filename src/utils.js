@@ -2,8 +2,8 @@
 export function closePopup(popup) {
     if (popup) {
         popup.classList.remove('popup_condition_opened');
-        document.removeEventListener('keydown', closePopupOnEsc);
-        document.removeEventListener('click', closePopupOnClick);
+        popup.removeEventListener('keydown', closePopupOnEsc);
+        popup.removeEventListener('click', closePopupOnClick);
     }
 }
 
@@ -11,8 +11,8 @@ export function closePopup(popup) {
 export function openPopup(popup) {
     if (popup) {
         popup.classList.add('popup_condition_opened');
-        document.addEventListener('keydown', closePopupOnEsc);
-        document.addEventListener('click', closePopupOnClick);
+        popup.addEventListener('keydown', closePopupOnEsc);
+        popup.addEventListener('click', closePopupOnClick);
     }
 }
 
@@ -25,8 +25,8 @@ function closePopupOnClick(evt) {
 
 // закрытие поп-апа по кнопке esc
 function closePopupOnEsc(evt) {
-    const popup = document.querySelector('.popup_condition_opened');
     if (evt.key == 'Escape' && popup) {
+        const popup = document.querySelector('.popup_condition_opened');
         closePopup(popup);
     }
 }

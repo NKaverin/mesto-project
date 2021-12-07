@@ -7,6 +7,9 @@ const profileCaption = document.querySelector('.profile__caption');
 const nameInput = popupEditProfile.querySelector('[name="profile-name"]');
 const captionInput = popupEditProfile.querySelector('[name="profile-caption"]');
 const elementsOnline = document.querySelector('.elements');
+const popupPlace = document.querySelector('#popupNewPlace');
+const namePlaceInput = popupPlace.querySelector('[name="image-name"]');
+const linkPlaceInput = popupPlace.querySelector('[name="image-link"]');
 
 export function handleEditProfileForm (evt) {
     profileName.textContent = nameInput.value;
@@ -14,10 +17,6 @@ export function handleEditProfileForm (evt) {
     // нужно закрыть форму
     closePopup(popupEditProfile);
 }
-
-const popupPlace = document.querySelector('#popupNewPlace');
-const namePlaceInput = popupPlace.querySelector('[name="image-name"]');
-const linkPlaceInput = popupPlace.querySelector('[name="image-link"]');
 
 export function handleAddElement (evt) {
     elementsOnline.prepend(createElementToElements(namePlaceInput.value, linkPlaceInput.value));
