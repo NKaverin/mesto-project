@@ -90,6 +90,23 @@
                 <p class="popup__caption"> Подпись к картинке </p>
             </div>
         </section>
+        <section class="popup" id="popupPatchAvatar"> 
+            <div class="popup__container">    
+                <button class="popup__icon-container" type="button">
+                    <img class="popup__close-icon" src="../vendor/images/CloseIcon.svg" alt="крестик для закрытия формы">
+                </button>    
+                <h2 class="popup__header">Обновить аватар</h2>
+                <form name="patch-avatar" class="popup__form">
+                    <fieldset class="popup__fieldbox"> 
+                        <input type="url" class="popup__field" placeholder="Ссылка на новый аватар" name="avater-link" required id="avater-link">
+                        <span class="avater-link-error popup__input-error"></span>  
+                    </fieldset>
+                    <button class="popup__submit-button" type="submit">
+                        Сохранить
+                    </button>
+                </form> 
+            </div>
+        </section>        
     </main>
     <footer class="footer">
         <p class="footer__copyright">&copy; 2020 Mesto Russia </p>
