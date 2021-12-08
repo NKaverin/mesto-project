@@ -1,29 +1,45 @@
 // получаем информацию о пользователе 
 export function getUserInfo() {
     fetch('https://nomoreparties.co/v4/cohortId/users/me', {
-    method: 'GET',
-    headers: {
-        authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6'
-    }  
+        method: 'GET',
+        headers: {
+            authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6'
+        }  
     })
-    .then(res => res.json())
+    .then(res => { 
+        if (res.ok) {
+            res.json()
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+    })
     .then((result) => {
         return result;
     })
+    .catch((err) => {
+        console.log(err); // выводим ошибку в консоль
+    }); 
 }
 
 // получаем информацию о карточках
 export function getCardsInfo() {
     fetch('https://nomoreparties.co/v4/cohortId/cards', {
-    method: 'GET',
-    headers: {
-        authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6'
-    }  
+        method: 'GET',
+        headers: {
+            authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6'
+        }  
     })
-    .then(res => res.json())
+    .then(res => { 
+        if (res.ok) {
+            res.json()
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+    })
     .then((result) => {
         return result;
     })
+    .catch((err) => {
+        console.log(err); // выводим ошибку в консоль
+    }); 
 }
 
 // меняем имя и информацию о пользователе
@@ -52,10 +68,18 @@ export function putLikeCard(id) {
             _id: id
         })     
     })
-    .then(res => res.json())
+    .then(res => { 
+        if (res.ok) {
+            res.json()
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+    })
     .then((result) => {
         return result;
     })
+    .catch((err) => {
+        console.log(err); // выводим ошибку в консоль
+    }); 
 }
 
 // убираем лайк у карточки
@@ -69,10 +93,18 @@ export function deleteLikeCard(id) {
             _id: id
         })     
     })
-    .then(res => res.json())
+    .then(res => { 
+        if (res.ok) {
+            res.json()
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+    })
     .then((result) => {
         return result;
     })
+    .catch((err) => {
+        console.log(err); // выводим ошибку в консоль
+    }); 
 }
 
 // меняем аватар
