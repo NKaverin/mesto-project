@@ -60,7 +60,7 @@ export function createElementToElements(elemTitle='', elemSrc='', elemId='', own
     //добавим попап-эвент
     elementsImage.addEventListener('click', function () {
         popupImage.src = elemSrc;   
-        popupImage.alt = 'картинка карточки';  
+        popupImage.alt = elemTitle;  
         popupCaption.textContent = elemTitle;    
         openPopup(imagePopup);
     })

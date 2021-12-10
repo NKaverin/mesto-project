@@ -74,7 +74,7 @@ export function deleteLikeCard(id) {
 
 // меняем аватар
 export function patchUserAvatar(avatar) {
-    return fetch('https://nomoreparties.co/v1/plus-cohort-4/users/me/avatar', {
+    return fetch(`${config.baseUrl}/users/me/avatar`, {
         method: 'PATCH',
         headers: config.header,
         body: JSON.stringify({
