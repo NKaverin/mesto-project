@@ -20,7 +20,7 @@ export function openPopup(popup) {
 // закрытие поп-апа по клику
 function closePopupOnClick(evt) {
     if (evt.target.classList.contains('popup') == true) {
-        closePopup(document.querySelector('.popup_condition_opened'));
+        closePopup(evt.target);
     }
 }
 

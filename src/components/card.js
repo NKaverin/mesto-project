@@ -3,9 +3,9 @@ import {profile} from './index.js';
 import {deleteCard, deleteLikeCard, putLikeCard} from './api';
 const fullHeartImage = new URL('../vendor/images/FullHeart.svg', import.meta.url);
 const emptyHearttImage = new URL('../vendor/images/heart.svg', import.meta.url);
-const popupElement = document.querySelector('#popupImage');
-const popupImage = popupElement.querySelector('.popup__image');
-const popupCaption = popupElement.querySelector('.popup__caption');
+const imagePopup = document.querySelector('#popupImage');
+const popupImage = imagePopup.querySelector('.popup__image');
+const popupCaption = imagePopup.querySelector('.popup__caption');
 
 
 function isLiked(likes) {
@@ -20,13 +20,15 @@ function isLiked(likes) {
 // добавляет картинке сердца смену картинки по клику 
 function addHandlerClickOnHeart(element, likes=[], cardId, elementsLikesCount) {
     element.addEventListener('click', function () {  
-        const alredyLiked = isLiked(likes);
         if (element.src.includes(emptyHearttImage)) {
             putLikeCard(cardId)
             .then((result) => {
                 element.src = fullHeartImage;
                 elementsLikesCount.textContent = result.likes.length;
-            })           
+            })
+            .catch ((error) => {
+                console.log(error)
+            })             
         }
         else {
             deleteLikeCard(cardId)
@@ -34,6 +36,9 @@ function addHandlerClickOnHeart(element, likes=[], cardId, elementsLikesCount) {
                 elementsLikesCount.textContent = result.likes.length;
                 element.src = emptyHearttImage;
             })
+            .catch ((error) => {
+                console.log(error)
+            })  
         }
     }); 
 }
@@ -54,9 +59,10 @@ export function createElementToElements(elemTitle='', elemSrc='', elemId='', own
     
     //добавим попап-эвент
     elementsImage.addEventListener('click', function () {
-        popupImage.src = elemSrc;    
+        popupImage.src = elemSrc;   
+        popupImage.alt = 'картинка карточки';  
         popupCaption.textContent = elemTitle;    
-        openPopup(popupElement);
+        openPopup(imagePopup);
     })
     // красим лайк
     if (isLiked(likes)) {
@@ -67,8 +73,13 @@ export function createElementToElements(elemTitle='', elemSrc='', elemId='', own
     // добавляем удаление при нажатии на кнопку удаления
     if (profile && ownerId == profile._id) {
         elementsElement.querySelector('.elements__delete-button').addEventListener('click', function () {
-            deleteCard(elemId);
-            elementsElement.remove();
+            deleteCard(elemId)
+            .then(element => {
+                elementsElement.remove();
+            })  
+            .catch ((error) => {
+                console.log(error)
+            })  
         }); 
     } else {
         // иначе не показываем кнопку удаления

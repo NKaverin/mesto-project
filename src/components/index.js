@@ -1,4 +1,4 @@
-import './index.css';
+import '../pages/index.css';
 
 import {closePopup, openPopup} from './utils.js';
 import {handleAddElement, handleEditProfileForm, editProfileImage} from './modal.js';
@@ -40,7 +40,13 @@ getUserInfo()
         .then((result) => {
             result.forEach(element => elementsOnline.prepend(createElementToElements(element.name, element.link, element._id, element.owner._id, element.likes)));
         })
-});
+        .catch ((error) => {
+            console.log(error)
+        })
+    })
+    .catch ((error) => {
+        console.log(error)
+    })  
 
 popupEditProfile.addEventListener('submit', handleEditProfileForm); 
 
@@ -72,6 +78,10 @@ document.querySelectorAll('.popup').forEach(popupElement =>
 // события для изменения картинки профиля
 blockAvatar.addEventListener('click', function () {
     openPopup(popupEditAvatar);
+    // по умолчанию выключаем кнопку
+    const submitButton = popupEditAvatar.querySelector('.popup__submit-button');
+    submitButton.disabled = true;
+    submitButton.classList.add('popup__submit-button_inactive');
 });
 popupEditAvatar.addEventListener('submit', editProfileImage); 
 
