@@ -13,7 +13,10 @@
     </header>
     <main>
         <section class="profile">
-            <img class="profile__avatar" src="../vendor/images/avatar.jpg" alt="аватар профиля">
+            <div class="profile__avatar-container">
+                <img class="profile__avatar" src="../vendor/images/avatar.jpg" alt="аватар профиля">
+                <img class="profile__avatar-edit" src="../vendor/images/pencil.svg" alt="карандаш при ховере">
+            </div>
             <div class="profile__info">
                 <h1 class="profile__name"> Жак-Ив Кусто </h1>
                 <button class="profile__edit-button" type="button">
@@ -32,9 +35,12 @@
                         <img class="elements__image">
                         <div class="elements__caption-box">
                             <p class="elements__caption">  </p>
-                            <button class="elements__heart" type="button">
-                                <img src="../vendor/images/heart.svg" alt="лайк, в виде сердца" class="elements__heart-image">
-                            </button>
+                            <div>
+                                <button class="elements__heart" type="button">
+                                    <img src="../vendor/images/heart.svg" alt="лайк, в виде сердца" class="elements__heart-image">
+                                </button>
+                                <p class="elements__like-count"> 0 </p>
+                            </div>
                         </div>
                         <button class="elements__delete-button" type="button">
                             <img src="../vendor/images/RecycleBin.svg" alt="корзина для удаления, позволяет удалить карточку">
@@ -91,15 +97,15 @@
             </div>
         </section>
         <section class="popup" id="popupPatchAvatar"> 
-            <div class="popup__container">    
+            <div class="popup__container popup_decor_white">    
                 <button class="popup__icon-container" type="button">
                     <img class="popup__close-icon" src="../vendor/images/CloseIcon.svg" alt="крестик для закрытия формы">
                 </button>    
                 <h2 class="popup__header">Обновить аватар</h2>
                 <form name="patch-avatar" class="popup__form">
                     <fieldset class="popup__fieldbox"> 
-                        <input type="url" class="popup__field" placeholder="Ссылка на новый аватар" name="avater-link" required id="avater-link">
-                        <span class="avater-link-error popup__input-error"></span>  
+                        <input type="url" class="popup__field" placeholder="Ссылка на новый аватар" name="avatar-link" required id="avatar-link">
+                        <span class="avatar-link-error popup__input-error"></span>  
                     </fieldset>
                     <button class="popup__submit-button" type="submit">
                         Сохранить
